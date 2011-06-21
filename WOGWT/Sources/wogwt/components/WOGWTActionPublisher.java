@@ -1,5 +1,6 @@
 package wogwt.components;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import wogwt.translatable.WOGWTClientUtil;
@@ -10,6 +11,8 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
+
+import er.extensions.components.ERXStatelessComponent;
 
 /**
  * This component "publishes" the urls of all the component actions in the
@@ -23,7 +26,7 @@ import com.webobjects.foundation.NSMutableArray;
  * because it generates hidden anchor elements.
  * 
  */
-public class WOGWTActionPublisher extends WOComponent {
+public class WOGWTActionPublisher extends ERXStatelessComponent {
 	
 	public NSArray<Method> actionMethodList;
 	public Method actionMethodItem;
@@ -64,10 +67,10 @@ public class WOGWTActionPublisher extends WOComponent {
     	super.appendToResponse(response, context);
     }
 
-	protected NSArray findActionMethods() {
-		NSMutableArray actionMethods = new NSMutableArray();
+	protected NSArray<Method> findActionMethods() {
+		NSMutableArray<Method> actionMethods = new NSMutableArray<Method>();
     	
-    	Method[] methods = rootParent().getClass().getMethods();
+    	Method[] methods = context().page().getClass().getMethods();
     	for (int i = 0; i < methods.length; i++) {
 			Method method = methods[i];
 			if (method.getParameterTypes().length == 0) {
@@ -85,24 +88,10 @@ public class WOGWTActionPublisher extends WOComponent {
     	return actionMethods.immutableClone();
 	}
     
-    public WOComponent rootParent() {
-    	WOComponent result = this;
-    	while (result.parent() != null) {
-    		result = result.parent();
-    	}
-    	return result;
-    }
-    
-    public WOActionResults performAction() {
-    	try {
-    		Method method = rootParent().getClass().getDeclaredMethod(actionMethodName(), new Class[0]);
-    		Object result = method.invoke(rootParent(), new Object[0]);
-    		return (WOActionResults) result;
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    	
-    	return null;
+    public WOActionResults performAction() throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		Method method = context().page().getClass().getDeclaredMethod(actionMethodName(), new Class[0]);
+		Object result = method.invoke(context().page(), new Object[0]);
+		return (WOActionResults) result;
     }
  
 }

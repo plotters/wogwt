@@ -79,6 +79,9 @@
 				<include name="*" />
 			</lib>
 		</woframework>
+		
+		<jar destfile="${dest.dir}/${project.name}.framework/Resources/Java/${project.name.lowercase}.jar"
+			basedir="bin" includes="**/*.xml" update="true" />
 	</target>
 	
 	<target name="compile" depends="init.build">

@@ -69,10 +69,10 @@ public class Updater {
 		
 		WOGWTClientUtil.fetchUrl( 
 				getUrl(), 
-				getRequestCallback(), 
 				usePostRequestMethod(),
 				getFormValues(), 
-				getRequestTimeoutMilliseconds() );
+				getRequestTimeoutMilliseconds(),
+				getRequestCallback() );
 	}
 
 	protected void saveObjectsForCallback() {

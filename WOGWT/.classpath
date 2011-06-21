@@ -8,11 +8,11 @@
 	<classpathentry exported="true" kind="lib" path="Libraries/gwt-dev.jar"/>
 	<classpathentry exported="true" kind="lib" path="Libraries/Tidy.jar" sourcepath="Libraries/Tidy.jar"/>
 	<classpathentry exported="true" kind="lib" path="Libraries/wogwt-emulation.jar"/>
-	<classpathentry kind="con" path="WOFramework/ICSShared"/>
+	<classpathentry kind="lib" path="Libraries/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="Libraries/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="con" path="WOFramework/ERJars"/>
 	<classpathentry kind="con" path="WOFramework/ERPrototypes"/>
 	<classpathentry kind="con" path="WOFramework/JavaWOExtensions"/>
-	<classpathentry kind="con" path="WOFramework/PostgresqlPlugIn"/>
 	<classpathentry kind="con" path="WOFramework/JavaEOAccess"/>
 	<classpathentry kind="con" path="WOFramework/JavaEOControl"/>
 	<classpathentry kind="con" path="WOFramework/JavaFoundation"/>

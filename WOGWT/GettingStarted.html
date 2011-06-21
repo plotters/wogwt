@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>WOGWT: Getting Started</title>
+	<style type="text/css">
+	body {
+		font-family: Arial;
+	}
+	</style>
+</head>
+<body>
+<h1>Getting Starting with WOGWT: GWT meets WebObjects</h1>
+<ol>
+	<li>Install the Google plugin for Eclipse and the GWT SDK with it.</li>
+	<li>Right-click your project and select Properties</li>
+	<li>Select Google -> Web Toolkit</li>
+	<li>Check the box "Use Google Web Toolkit".</li>
+	<li>Select Google -> "Web Application".</li>
+	<li>Check the box "This project has a WAR directory".</li>
+	<li>Enter "WebServerResources" as the value for the WAR directory.</li>
+	<li>Uncheck the box "Launch and delpoy from the directory".</li>
+	<li>Add the WOGWT framework to your project.</li>
+	<li>Add the JavaWOJSPServlet framework to your project.</li>
+	<li>Press OK to close the project properties. You can ignore the error about the missing web.xml file; it will be auto-generated when the app is launched later.</li>
+	<li>Create a new empty package to hold your GWT code.</li>
+	<li>In this package create a new GWT Module via File->New->Other->"Google Web Toolkit->Module:
+		<ul>
+			<li>Make sure the package is the new package you created</li>
+			<li>Enter "Application" as the module name</li>
+			<li>Click "Finish"</li>
+		</ul>
+		<br/>
+	</li> 
+	<li>Eclipse will have created a "client" package inside your GWT package. In this package create a new class that will be your entry-point (perhaps called MainScript):
+		<pre>
+package your.app.gwt.client;
+
+import com.google.gwt.user.client.Window;
+import wogwt.translatable.GwtDefaultEntryPoint;
+
+public class MainScript extends GwtDefaultEntryPoint {
+	@Override
+	public void onModuleLoad() {
+		Window.alert("GWT is active");
+	}
+}
+		</pre>
+	</li>
+	<li>Edit the GWT module file:
+		<ul>
+			<li>In your GWT package find the generated Application.gwt.xml file. This is the module file.</li>
+			<li>Add two lines inside the &lt;module&gt; node to include WOGWT as a dependency and to declare your entry-point's class add:
+				<pre>
+&lt;inherits name="wogwt.translatable.WOGWT"/&gt;
+&lt;entry-point class="your.app.gwt.client.MainScript"/&gt;				
+				</pre>
+			</li>
+		</ul>
+	</li>
+	<li>Add a WOGWTScript component in Main.wo or your PageWrapper component (or wherever you want GWT code to run) with your module name:
+		<pre>
+&lt;wo:WOGWTScript module="your.app.gwt.Application" historySupportEnabled="$true" /&gt;	
+		</pre>
+	</li>
+	<li>Create a launch configuration in Eclipse:
+		<ul>
+			<li>Select your project in the WO Explorer view.</li>
+			<li>Go to Run->"Run Configurations..."</li>
+			<li>Select the "Web Application" section (with the blue g).</li>
+			<li>Press the "New" button at the top.</li>
+			<li>Enter a name for the launch configuration.</li>
+			<li>Enter "wogwt.GwtDevMode" as the main class. This is a wrapper around the regular launcher that will help you out.</li>
+			<li>Click Run (or Debug) to launch the application.</li>
+		</ul>
+		<br/>
+	</li>
+	<li>The URL for the app will be  printed in the console. Copy the URL and paste it into the browser.</li>
+	<li>You will be prompted to install the GWT Developer Mode plug-in for the browser. After installing the plug-in you will be ready to go.</li>
+	<li>Now you can add code to your MainScript class to do cool things.</li>
+	<li>Look in the "Development Mode" tab/view in Eclipse for logging messages and stack traces as you work.</li>
+	<li>Profit.</li>
+</ol>
+</body>
+</html>

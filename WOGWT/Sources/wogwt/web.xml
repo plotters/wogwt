@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+	<context-param>
+		<param-name>WOAppMode</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>WOClasspath</param-name>
+		<param-value>
+			WOAINSTALLROOT/${APP_NAME}.woa/Contents/Resources/Java/${MAIN_CLASS_FILE_PATH}
+			WOAINSTALLROOT/${APP_NAME}.woa/Contents/Resources/Java
+		</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>WOApplicationClass</param-name>
+		<param-value>${MAIN_CLASS}</param-value>
+	</context-param>
+	
+    <context-param>
+      <param-name>org.mortbay.jetty.servlet.SessionURL</param-name>
+      <param-value>none</param-value>
+    </context-param> 
+    
+	<servlet>
+		<servlet-name>woServlet</servlet-name>
+		<servlet-class>er.extensions.jspservlet.ERXServletAdaptor</servlet-class>
+	</servlet>
+  
+	<servlet-mapping>
+		<servlet-name>woServlet</servlet-name>
+		<url-pattern>/${APP_NAME}/WebObjects/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

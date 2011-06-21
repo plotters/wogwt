@@ -31,7 +31,8 @@ public class WOGWTClientUtil {
 	public static final String UPDATE_CONTAINER_ID_KEY = "_u";
 	public static final String WOGWTMissingUpdateContainer = "WOGWTMissingUpdateContainer";
 	public static final String ACTION_ID_PREFIX = "wogwt_action_";
-	
+	public static int DEFAULT_TIMEOUT_MILLISECONDS = 30000; // 30 seconds
+
     public static MetaElement metaTagWithName(String name) {
     	NodeList<Element> metas = Document.get().getElementsByTagName("meta");
     	for (int i = 0; i < metas.getLength(); i++) {
@@ -93,16 +94,16 @@ public class WOGWTClientUtil {
     }
     
     /**
-     * Convenience method to fetch a url using a RequestBuilder
+     * Convenience method to fetch a url using a GET request
      */
     public static void fetchUrl(String url, RequestCallback callback) {
-    	fetchUrl(url, callback, false, null, 30000);
+    	fetchUrl(url, false, null, DEFAULT_TIMEOUT_MILLISECONDS, callback);
     }
 
     /**
      * Convenience method to fetch a url using a RequestBuilder
      */
-    public static void fetchUrl(String url, RequestCallback callback, boolean usePostMethod, Map<String, String> formValues, int timeoutMillis) {
+    public static void fetchUrl(String url, boolean usePostMethod, Map<String, String> formValues, int timeoutMillis, RequestCallback callback) {
 		Method method = usePostMethod ? RequestBuilder.POST : RequestBuilder.GET;
     	RequestBuilder requestBuilder = new RequestBuilder(method, url);
 		requestBuilder.setTimeoutMillis(timeoutMillis);
@@ -131,7 +132,7 @@ public class WOGWTClientUtil {
 				callback.onError(null, e);
 		}
     }
-
+    
     public static boolean hasParent(Element elementToCheck, Element possibleParent) {
     	Element element = elementToCheck;
     	
