@@ -3,11 +3,14 @@ package wogwt.translatable;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.user.client.Window;
 
 public class DigitOnlyKeyPressHandler implements KeyPressHandler {
 
 	public static boolean isNavigationOrModifierKey(char key) {
+		if (key == 0) { // fix weird problem with backspace getting prevented in Firefox
+			return true;
+		}
+		
 		return key == KeyCodes.KEY_ALT ||
 			key == KeyCodes.KEY_BACKSPACE ||
 			key == KeyCodes.KEY_CTRL ||
