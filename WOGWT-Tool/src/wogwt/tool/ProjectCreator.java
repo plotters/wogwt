@@ -236,7 +236,7 @@ public class ProjectCreator {
 			String clientEogenFileName = new File(modelRelativePath).getParent() + "/" + projectName + "-Client.eogen";
 
 			modelRelativePath = modelRelativePath.replace(projectDir + "/", "");
-			String clientEogenFileText = " -destination Sources -extension java -javaclient -javaTemplate _EntityClient.java -model " + modelRelativePath + " -packagedirs -subclassDestination Sources -subclassJavaTemplate EntityClient.java -templatedir /Library/Frameworks/WOGWT.framework/Resources -verbose -loadModelGroup";
+			String clientEogenFileText = " -destination Sources -extension java -javaclient -javaTemplate _EntityDTO.java -model " + modelRelativePath + " -packagedirs -subclassDestination Sources -subclassJavaTemplate EntityDTO.java -templatedir /Library/Frameworks/WOGWT.framework/Resources -verbose -loadModelGroup";
 			if (!new File(clientEogenFileName).exists()) {
 				FileUtils.writeStringToFile(new File(clientEogenFileName), clientEogenFileText, "UTF-8");
 			}

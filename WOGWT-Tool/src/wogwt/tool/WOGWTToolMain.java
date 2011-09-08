@@ -95,7 +95,9 @@ public class WOGWTToolMain extends JFrame {
 			"Step 7: Launch your project in GWT Development Mode by running the generated <br>" +
 			"&lt;ProjectName&gt;_GWTDevMode.launch file in your project folder.<br><br>" +
 			"Step 8: In the \"Development Mode\" tab in Eclipse copy the url displayed and paste it into the browser. The URL is like:<br>" +
-			"http://localhost:8888/MyApp/WebObjects/MyApp.woa?gwt.codesvr=127.0.0.1:9997</html>");
+			"http://localhost:8888/MyApp/WebObjects/MyApp.woa?gwt.codesvr=127.0.0.1:9997<br>" +
+			"Step 9: In your EOModel, you need to set the Client Class Name for any Entities that want to transfer to/from the client.<br>" +
+			"The classes need to live inside the gwt client package or in a subpackage.</html>");
 		mainConstraints.anchor = GridBagConstraints.WEST;
 		this.add(bottomLabel, mainConstraints);
 	}

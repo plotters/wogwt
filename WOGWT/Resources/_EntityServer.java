@@ -19,7 +19,7 @@ import wogwt.WOGWTServerUtil;
 
 // This class can only be used on the server-side
 @SuppressWarnings("all")
-public abstract class ${entity.prefixClassNameWithoutPackage} extends #if ($entity.parentClassNameSet)${entity.parentClassName}#elseif ($entity.partialEntitySet)er.extensions.partials.ERXPartial<${entity.partialEntity.className}>#elseif ($entity.parentSet)${entity.parent.classNameWithDefault}#elseif ($EOGenericRecord)${EOGenericRecord}#else ERXGenericRecord#end implements WOGWTServerEO {
+public abstract class ${entity.prefixClassNameWithoutPackage} extends #if ($entity.parentClassNameSet)${entity.parentClassName}#elseif ($entity.partialEntitySet)er.extensions.partials.ERXPartial<${entity.partialEntity.className}>#elseif ($entity.parentSet)${entity.parent.classNameWithDefault}#elseif ($EOGenericRecord)${EOGenericRecord}#else ERXGenericRecord#end #if ($entity.clientClassName)implements WOGWTServerEO#end {
 #if ($entity.partialEntitySet)
   public static final String ENTITY_NAME = "$entity.partialEntity.name";
 #else
@@ -349,6 +349,7 @@ public abstract class ${entity.prefixClassNameWithoutPackage} extends #if ($enti
   
 #end
 
+#if ($entity.clientClassName) 
   public WOGWTClientEO toClientEO() {
     return new ${entity.clientClassName}( WOGWTServerUtil.eoToDictionary(this) ); 
   }
@@ -360,5 +361,5 @@ public abstract class ${entity.prefixClassNameWithoutPackage} extends #if ($enti
     ${entity.clientClassName} rec = new ${entity.clientClassName}( data ); 
     return rec;
   }
-
+#end
 }
