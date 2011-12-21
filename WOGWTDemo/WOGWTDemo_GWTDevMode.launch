@@ -14,8 +14,8 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="com.google.gwt.eclipse.core.moduleClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.gwt.dev.DevMode"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-remoteUI &quot;${gwt_remote_ui_server_port}:${unique_id}&quot; -startupUrl http://localhost:8888/WOGWTDemo/WebObjects/WOGWTDemo.woa -logLevel INFO -port 8888 -war &quot;${workspace_loc:WOGWTDemo}/WebServerResources&quot; your.app.gwt.Application"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-codeServerPort 9997 -remoteUI &quot;${gwt_remote_ui_server_port}:${unique_id}&quot; -startupUrl http://localhost:8888/WOGWTDemo/WebObjects/WOGWTDemo.woa -logLevel INFO -port 8888 -war &quot;${workspace_loc:WOGWTDemo}/WebServerResources&quot; your.app.gwt.Application"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="WOGWTDemo"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XstartOnFirstThread -d32 -Xmx256M -Dwogwt.isHostedMode=true &quot;-DWOAINSTALLROOT=${workspace_loc:WOGWTDemo/build}&quot; -DWOIDE=WOLips"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XstartOnFirstThread -Xmx256M -Dwogwt.isHostedMode=true &quot;-DWOAINSTALLROOT=${workspace_loc:WOGWTDemo/build}&quot; -DWOIDE=WOLips"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${working_dir_loc_WOLips:WOGWTDemo}"/>
 </launchConfiguration>

@@ -1,19 +1,19 @@
 <webobject name="PageWrapper">
 	This is an ajax update link outside the update container.<br/>
 	<webobject name="OutsideLink">Outside Link</webobject>
-	<div id="outsideContainer" style="border: 1px solid black;">
+	<wo:WOGWTUpdateContainer id="outsideContainer" style="border: 1px solid black;">
 		<webobject name="Now"/><br/>
 		<br/>
 		<webobject name="UpdateTimeActionLink">Regular component action</webobject><br/>
-	</div>
+	</wo:WOGWTUpdateContainer>
 	
 	<br/>
 	<br/>
 	
-	<div id="insideContainer" style="border: 1px solid black;">
+	<wo:WOGWTUpdateContainer id="insideContainer" style="border: 1px solid black;">
 		This is an ajax update link inside the update container.<br/>
 		<webobject name="InsideLink">Inside Link</webobject><br/>
 		<webobject name="Now"/><br/>
-	</div>
+	</wo:WOGWTUpdateContainer>
 
 </webobject>

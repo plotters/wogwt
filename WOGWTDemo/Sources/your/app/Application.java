@@ -3,10 +3,12 @@ package your.app;
 import wogwt.GWTContext;
 import wogwt.WOGWTServerUtil;
 import wogwt.components.WOGWTScript;
+import wogwt.components.WOGWTUpdateContainer;
 import wogwt.server.rpc.GWTRPCRequestHandler;
 
 import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WOResponse;
+import com.webobjects.appserver._private.WOAjaxRequestHandler;
 import com.webobjects.appserver._private.WOComponentRequestHandler;
 import com.webobjects.foundation._NSUtilities;
 
@@ -48,23 +50,22 @@ public class Application extends ERXApplication {
 		
 		// needed for proper class loading in GWT's Hosted Mode shell
 		_NSUtilities.setClassForName( your.app.components.Main.class, "Main" );
+		_NSUtilities.setClassForName( WOGWTScript.class, "WOGWTScript" );
+		_NSUtilities.setClassForName( WOGWTUpdateContainer.class, "WOGWTUpdateContainer" );
 
 		setPageCacheSize(3);
 	}
 
     public WOResponse dispatchRequest(WORequest request) {
+    	if (request.requestHandlerKey().equals(ajaxRequestHandlerKey())) {
+    		AjaxUtils.updateMutableUserInfoWithAjaxInfo(request);
+    	}
+    	
     	WOResponse response = super.dispatchRequest( request );
     	
-    	WOGWTServerUtil.onlyIncludeUpdateContainerInResponse(request, response);
+    	//WOGWTServerUtil.onlyIncludeUpdateContainerInResponse(request, response);
     	
     	return response;
     }
-    
-    @Override
-    public String host() {
-    	_setHost("127.0.0.1");
-    	return "127.0.0.1";
-    }
-    
     
 }

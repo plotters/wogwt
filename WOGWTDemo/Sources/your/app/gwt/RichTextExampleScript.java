@@ -72,7 +72,7 @@ public class RichTextExampleScript implements EntryPoint {
 			}
 		};
 		
-		WOGWTClientUtil.fetchUrl(url, callback, true, formValues, 10000);
+		WOGWTClientUtil.fetchUrl(url, true, formValues, 10000, callback);
 	}
 
 	public static final String CONTAINER_ID = "container";

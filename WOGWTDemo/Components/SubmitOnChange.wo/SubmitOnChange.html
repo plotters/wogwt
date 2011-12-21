@@ -3,15 +3,15 @@
 	<webobject name="PartialForm">
 		This demonstrates partial form submission (submits a single field at a time on change).<br/>
 		State: <webobject name="StatePopup"/><br/>
-		<div id="countyDiv">
+		<wo:WOGWTUpdateContainer id="countyDiv">
 			County: <webobject name="CountyPopup"/>
-			<div id="streetDiv">
+			<wo:WOGWTUpdateContainer id="streetDiv">
 				Street: <webobject name="StreetPopup"/>
-				<div id="resultDiv">
+				<wo:WOGWTUpdateContainer id="resultDiv">
 					Selected street: <webobject name="StreetString"/>
-				</div>
-			</div>
-		</div>
+				</wo:WOGWTUpdateContainer>
+			</wo:WOGWTUpdateContainer>
+		</wo:WOGWTUpdateContainer>
 	</webobject>
 
 </webobject>

@@ -1,8 +1,10 @@
 package your.app.gwt;
 
+import wogwt.translatable.ListBoxEx;
 import wogwt.translatable.WOGWTClientUtil;
 import wogwt.translatable.http.AfterDOMUpdateCallback;
 import wogwt.translatable.http.SingleFieldSubmitOnChangeListener;
+import wogwt.translatable.http.SubmitOnChangeListener;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -30,11 +32,10 @@ public class SubmitOnChangeScript implements EntryPoint {
 	
 	private void attachPartialSubmitFormListeners() {
 		ListBox statePopup = ListBox.wrap(DOM.getElementById("statePopup"));
-		
 		if (stateChangeRegistrar != null) {
 			stateChangeRegistrar.removeHandler();
 		}
-		stateChangeRegistrar = statePopup.addChangeHandler(new SingleFieldSubmitOnChangeListener("countyDiv", 
+		stateChangeRegistrar = statePopup.addChangeHandler(new SubmitOnChangeListener("countyDiv", 
 				new AfterDOMUpdateCallback() {
 					public void afterDOMUpdate(Object sender, String url, Response response) {
 						attachPartialSubmitFormListeners();
