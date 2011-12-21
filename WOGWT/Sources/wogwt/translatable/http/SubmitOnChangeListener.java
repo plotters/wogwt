@@ -34,12 +34,16 @@ public class SubmitOnChangeListener extends SubmitUpdater implements ChangeHandl
 	}
 	
 	public void onChange(ChangeEvent event) {
-		Log.finest("onChange: " + Element.as(event.getNativeEvent().getEventTarget()).getId());
+		if (event.getNativeEvent().getEventTarget() != null) {
+			Log.finest("onChange: " + Element.as(event.getNativeEvent().getEventTarget()).getId());
+		}
 		handleEvent((Widget)event.getSource());		
 	}
 
 	public void onKeyUp(KeyUpEvent event) {
-		Log.finest("onKeyUp: " + Element.as(event.getNativeEvent().getEventTarget()).getId());
+		if (event.getNativeEvent().getEventTarget() != null) {
+			Log.finest("onKeyUp: " + Element.as(event.getNativeEvent().getEventTarget()).getId());
+		}
 		handleEvent((Widget)event.getSource());	
 	}
 	
