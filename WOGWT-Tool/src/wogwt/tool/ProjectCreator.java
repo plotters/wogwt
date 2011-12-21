@@ -136,6 +136,23 @@ public class ProjectCreator {
 			}
 		}
 		
+		if (!applicationClassTextMod.matches("public\\s+WOResponse\\s+dispatchRequest\\(WORequest\\s+")) {
+			int lastBrace = applicationClassTextMod.lastIndexOf("}");
+			applicationClassTextMod = 
+				applicationClassTextMod.substring(0, lastBrace) + 
+				"\n" +
+				"	public com.webobjects.appserver.WOResponse dispatchRequest(com.webobjects.appserver.WORequest request) {\n" +
+				"    	if (request.requestHandlerKey().equals(ajaxRequestHandlerKey())) {\n" + 
+				"			er.ajax.AjaxUtils.updateMutableUserInfoWithAjaxInfo(request);\n" +
+    			"		}\n" +
+				"		com.webobjects.appserver.WOResponse response = super.dispatchRequest(request);\n" +
+				"		return response;\n" +
+				"	}\n" +
+				applicationClassTextMod.substring(lastBrace);
+		} else {
+			throw new RuntimeException("Couldn't modify Application.dispatchRequest");
+		}
+		
 		FileUtils.writeStringToFile(new File(applicationClassFileName), applicationClassTextMod, "UTF-8");
 		
 		

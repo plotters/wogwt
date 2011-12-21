@@ -3,17 +3,29 @@ package wogwt.components;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOElement;
+import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.foundation.NSDictionary;
 
 import er.ajax.AjaxUpdateContainer;
+import er.ajax.AjaxUtils;
 
 /**
  * This class can used to explicitly indicate areas you want update with ajax calls.
- * By using this then you can remove the call to:
- * 		WOGWTServerUtil.onlyIncludeUpdateContainerInResponse(request, response);
- * in Application.dispatchRequest and improve performance.
- *
+ * This is not GWT-specific and could be used with any JS library.<br>
+ * <br>
+ * To use this you need to add some code into your Application.dispatchRequest method:<br>
+ * <br>
+ * <pre>     
+	public WOResponse dispatchRequest(WORequest request) {
+    	if (request.requestHandlerKey().equals(ajaxRequestHandlerKey())) {
+    		AjaxUtils.updateMutableUserInfoWithAjaxInfo(request);
+    	}
+    	WOResponse response = super.dispatchRequest( request );
+    	return response;
+    }
+  	</pre><br>
+ * This will ensure that only the update container is included in Ajax requests.
  */
 public class WOGWTUpdateContainer extends AjaxUpdateContainer {
 
