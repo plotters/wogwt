@@ -209,7 +209,11 @@ public class WOGWTClientUtil {
 	}
 	
 	public static String selectElementValue(SelectElement element) {
-		return element.getOptions().getItem(element.getSelectedIndex()).getValue();
+		if (element.getSelectedIndex() == -1) {
+			return null;
+		} else {
+			return element.getOptions().getItem(element.getSelectedIndex()).getValue();
+		}
 	}
 	
 	public static String formFieldValue(Element element) {

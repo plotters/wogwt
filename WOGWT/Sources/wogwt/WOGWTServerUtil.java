@@ -236,8 +236,8 @@ public class WOGWTServerUtil {
 			if (rootEO.isToManyKey(keyPath)) {
 				NSArray<WOGWTServerEO> relationshipObjects = (NSArray<WOGWTServerEO>)value;
 				NSMutableArray<WOGWTClientEO> clientObjects = new NSMutableArray<WOGWTClientEO>();
-				for (int j = 0; j < relationshipObjects.count(); j++) {
-					WOGWTServerEO eo = (WOGWTServerEO)relationshipObjects.objectAtIndex(j);
+				for (int j = 0; j < relationshipObjects.size(); j++) {
+					WOGWTServerEO eo = (WOGWTServerEO)relationshipObjects.get(j);
 					clientObjects.add(eo.toClientEO(keyPathsBelowGivenKey(keyPaths, keyPath)));
 				}
 				result.setObjectForKey(clientObjects.immutableClone(), keyPath);
