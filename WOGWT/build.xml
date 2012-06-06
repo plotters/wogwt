@@ -1,7 +1,7 @@
 <project name="WOGWT" default="build" basedir=".">
 	<target name="build" depends="init.build,build.woframework,package" />
 
-	<target name="install" depends="init.install,build.woframework" />
+	<target name="install" depends="init.install,clean,build.woframework" />
 
 	<target name="clean" depends="init.properties">
 		<delete dir="bin" />
