@@ -19,6 +19,7 @@
 		<attribute name="useTreeLogger" default="false"/>
 		<!-- possible style values are: OBFUSCATED, PRETTY, and DETAILED -->
 		<attribute name="style" default="OBFUSCATED"/>
+		<attribute name="strict" default="false"/>
 		<!-- Debugging: causes the compiled output to check assert statements -->
 		<attribute name="enableAssert" default="false"/>
 		<!-- Validate all source code, but do not compile -->
@@ -52,6 +53,10 @@
 				<istrue value="@{useTreeLogger}"/>
 			</condition>
 			
+			<condition property="strictArg" value="-strict" else=" ">
+				<istrue value="@{strict}"/>
+			</condition>
+			
 			<condition property="assertArg" value="-ea" else=" ">
 				<istrue value="@{enableAssert}"/>
 			</condition>
@@ -82,9 +87,16 @@
 					<pathelement location="@{srcDir}" />
 				  
 					<pathelement path="@{gwthome}/gwt-user.jar" />
+					<pathelement path="@{gwthome}/gwt-elemental.jar" />
+					<pathelement path="@{gwthome}/requestfactory-apt.jar" />
+					<pathelement path="@{gwthome}/requestfactory-client+src.jar" />
 					<pathelement path="@{gwthome}/validation-api-1.0.0.GA.jar" />
 					<pathelement path="@{gwthome}/validation-api-1.0.0.GA-sources.jar" />
 					<pathelement path="@{gwthome}/gwt-dev.jar" />
+					<pathelement path="@{gwthome}/gwt-soyc-vis.jar" />
+					<pathelement path="@{gwthome}/gwt-codeserver.jar" />
+					<pathelement path="@{gwthome}/gwt-api-checker.jar" />
+					
 					<pathelement path="@{gwthome}/gwt-incubator.jar" />
 					<pathelement path="@{gwthome}/wogwt.jar" />
 					<pathelement path="@{gwthome}/wogwt-emulation.jar" />
@@ -107,6 +119,7 @@
 				<arg value="-style" />
 				<arg value="@{style}" />
 				
+				<arg line="${strictArg}" />
 				<arg line="${assertArg}" />
 				<arg line="${disableClassMetadataArg}" />
 				<arg line="${disableCastCheckingArg}" />
